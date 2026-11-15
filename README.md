@@ -4,18 +4,18 @@
 
 ## 在云端运行第一张切片
 
-准备一台能运行 NVIDIA GPU 容器的 Linux x86_64 主机，将仓库克隆或解压到本地。把私有资产包解压到仓库外，得到 `weights/`、`encoder/` 和可选的 `references/`。切片目录和模型目录以只读方式挂载。运行目录使用支持文件锁和原子重命名的持久化磁盘。
+准备一台能运行 NVIDIA GPU 容器的 Linux x86_64 主机，将仓库克隆或解压到本地。从[公开模型发布页](https://github.com/shenxiaotianCNS/HENETs-models/releases/tag/assets-v0.1.1)下载对应权重，按页面说明校验并解压到仓库外，得到 `weights/`、`encoder/` 和可选的 `references/`。切片目录和模型目录以只读方式挂载。运行目录使用支持文件锁和原子重命名的持久化磁盘。
 
 ```bash
-docker build -t henets:cloud-v0.1.0 .
-export HENETS_ASSETS=/workspace/private-assets
+docker build -t henets:cloud-v0.1.1 .
+export HENETS_ASSETS=/workspace/henets-assets
 export HENETS_DATA=/workspace/data
 export HENETS_RUNS=/workspace/runs
 mkdir -p "$HENETS_RUNS"
 
 docker run --rm --gpus all \
   -v "$HENETS_ASSETS:/assets:ro" -v "$HENETS_DATA:/data:ro" -v "$HENETS_RUNS:/runs" \
-  henets:cloud-v0.1.0 run --slide /data/slide01.svs --sample-id slide01 \
+  henets:cloud-v0.1.1 run --slide /data/slide01.svs --sample-id slide01 \
   --weights /assets/weights --encoder /assets/encoder --out /runs/study
 ```
 
@@ -37,7 +37,7 @@ breast_01,slides/breast_01.svs,breast
 
 ```bash
 docker run --rm -v "$HENETS_DATA:/data:ro" -v "$HENETS_RUNS:/runs" \
-  henets:cloud-v0.1.0 report --manifest /data/slides.csv --out /runs/study
+  henets:cloud-v0.1.1 report --manifest /data/slides.csv --out /runs/study
 ```
 
 中断后使用原命令与挂载点重试。每个病例独立加锁，源片 SHA-256、运行配置和代码指纹绑定到该病例。已验证导出的病例可以直接复用。默认在导出文件与完整区室蒙版的校验通过后清理这张切片的推理缓存；调试期间可以加 `--keep-cache`。各队列使用独立的 `--out`。
@@ -65,4 +65,4 @@ docker run --rm -v "$HENETS_DATA:/data:ro" -v "$HENETS_RUNS:/runs" \
 
 `python examples/make_demo.py /path/to/data/demo.svs` 生成一张 1024×1024 的人工 Aperio 格式测试切片。也可在上面的镜像中通过 `--entrypoint python` 运行 `examples/make_demo.py`，把输出目录以可写方式挂载。然后运行单片命令，将 `slide01.svs` 和 ID 换为 `demo.svs` 和 `demo`。应得到 4 个窗口、同尺寸的区室蒙版和病例报告。该测试可检查安装、几何和计算流程。生物学验证需要独立标本与相应的病理或实验参照。
 
-源包只列入 `SOURCE_MANIFEST.json` 中的文件。私有资产、原片、结果及凭据放在仓库外。保留分发包内的第三方通知；项目自己的代码和模型的公开再分发许可由权利人决定。
+源包只列入 `SOURCE_MANIFEST.json` 中的文件。模型权重由独立的 HENETs-models 仓库分发。保留分发包内的第三方通知；项目自己的代码和模型的公开再分发许可由权利人决定。

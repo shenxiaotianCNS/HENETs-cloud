@@ -114,10 +114,10 @@ def verify_models(cfg):
     if set(locked["weights"]) != expected_paths:
         raise ValueError("Incomplete model fingerprint inventory")
     _validate_encoder(cfg["ctranspath_root"], locked["encoder_source_lf_sha256"])
-    for name, expected in locked["weights"].items():
-        if sha256(root/name) != expected:
-            raise ValueError(f"Unexpected model bytes: {name}")
-    return locked
+    actual = {name: sha256(root/name) for name in locked["weights"]}
+    if actual != locked["weights"] and actual != locked.get("archived_weights"):
+        raise ValueError("Weights do not match a complete HENETs release")
+    return {**locked, "weights": actual}
 
 
 @contextmanager

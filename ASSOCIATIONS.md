@@ -2,7 +2,7 @@
 
 在发布包根目录安装 CPU 分析依赖。这个模块可以在完成 H&E 导出后单独运行。
 
-也可在构建 Docker 镜像时加 `--build-arg WITH_ANALYSIS=1`，执行分析时以 `--entrypoint python` 调用 `-m henets.associate`。私有资产包中的 `references/` 提供下文使用的两个参考文件。
+也可在构建 Docker 镜像时加 `--build-arg WITH_ANALYSIS=1`，执行分析时以 `--entrypoint python` 调用 `-m henets.associate`。模型资产包中的 `references/` 提供下文使用的两个参考文件。
 
 ```bash
 python -m pip install -r requirements-analysis.txt
@@ -15,7 +15,7 @@ python -m henets.associate --help
 
 ```bash
 python -m henets.associate rna --manifest cohort/manifest.csv \
-  --gene-sets private-assets/references/gene_sets_snapshot.json --markers private-assets/references/mcpcounter_genes.tsv \
+  --gene-sets henets-assets/references/gene_sets_snapshot.json --markers henets-assets/references/mcpcounter_genes.tsv \
   --out output/rna
 ```
 

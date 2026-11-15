@@ -6,7 +6,7 @@ Build the Dockerfile **in the exported repository**. It installs a stable PyTorc
 
 For a source installation, install the matching PyTorch/torchvision wheels for your GPU from the [PyTorch installation guidance](https://pytorch.org/get-started/previous-versions/), then `pip install -r requirements-inference.txt`. Linux x86_64 and a local POSIX-style filesystem are intended for Docker; an object-store URL is not a filesystem path. Each worker may serve different slides under the same output directory. Budget for one working context plus weights per GPU worker: an equipment-specific VRAM threshold is not guaranteed. The frozen BCSS context is intentionally not split into smaller contexts on out-of-memory errors.
 
-Mount an authorized model bundle as a **read-only** directory:
+Mount the model bundle from the [public assets release](https://github.com/shenxiaotianCNS/HENETs-models/releases/tag/assets-v0.1.1) as a **read-only** directory:
 
 ```text
 weights/
@@ -20,7 +20,7 @@ encoder/
   path2space/frozen/ctrans/swin_transformer.py
 ```
 
-The 20 SHA-256 fingerprints and the three external source fingerprints are in `henets/model_lock.json`. The encoder directory is the `ge_model` directory from [Path2Space companion, pinned revision](https://github.com/eldadshulman/path2space-companion/tree/dd69f503e0f290ff4c5628ce2f723cbd7c638808/ge_model). Only the indicated encoder subpackage is needed; the Path2Space gene-expression model, its weights, and its normalization pipeline are not used. The external code is trusted executable Python; mount it from the expected source, not a user-uploadable directory. Source fingerprints ignore CRLF vs LF; model fingerprints use exact file bytes. A generic ImageNet model or unadapted public BCSS weights will fail the checks. No weight or encoder download is attempted.
+The public bundle omits training split identifiers. The loader also accepts the complete original v0.1.0 bundle and records the fingerprints actually used. The model and encoder source fingerprints are in `henets/model_lock.json`. The encoder directory is the `ge_model` directory from [Path2Space companion, pinned revision](https://github.com/eldadshulman/path2space-companion/tree/dd69f503e0f290ff4c5628ce2f723cbd7c638808/ge_model). Only the indicated encoder subpackage is needed; the Path2Space gene-expression model, its weights, and its normalization pipeline are not used. The external code is trusted executable Python; mount it from the expected source, not a user-uploadable directory. Source fingerprints ignore CRLF vs LF; model fingerprints use exact file bytes. A generic ImageNet model or unadapted public BCSS weights will fail the checks. No weight or encoder download is attempted.
 
 Given a JSON config with `samples` (each with `sample_id` and `he_path`), `output_directory`, `weights_root`, and `ctranspath_root`:
 
