@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "model_version": "HENETs protein ensemble and BCSS v1",
+  "weights": {
+    "ctranspath.pth": "7c998680060c8743551a412583fac689db43cec07053b72dfec6dcd810113539",
+    "best_adapted.pth": "ce2f3e4ed8afcda3cda444efa5ae566b3b3d210481b931020dae2779574ed886",
+    "path2space_protein/fold0_heads.pt": "c96168dc0bcbb9734572d652d1fde1e48d0688b0c3c66a99edf46406dadd997e",
+    "path2space_last_stage/fold0_models.pt": "6e362db79e2f1dbced0fa7a058cff7c1087e915d68544c93622856c842a24e5d",
+    "path2space_protein/fold1_heads.pt": "55960a62d8089444fe9b88b4945a86cc4d18e183c523e033b61ed1ab5b5b2092",
+    "path2space_last_stage/fold1_models.pt": "fb3a9560bee7e7fb27babb1bef159664aecf7706cc47e6bd3493329399f1cf53",
+    "path2space_protein/fold2_heads.pt": "5895f9ced765b9529f6c19dca7db2fed79491a890e7558216ee6b3584c51deb2",
+    "path2space_last_stage/fold2_models.pt": "eb2a9db0ff93101fa477ba13cb8d3a3814ab0fd9b772bc5cb145b017921959cd",
+    "path2space_protein/fold3_heads.pt": "3587b0dd001dfdef79c2f541e8ef4a8679cf7abb22d6b4ac6115b69a6eb6a49f",
+    "path2space_last_stage/fold3_models.pt": "ccefa9f28bcd23034d6539fb70da7d3df99bd5b8f296aaf755e9a7f8f30cf44b",
+    "path2space_protein/fold4_heads.pt": "c841a0ca24f6fdb3bdb55842325f82f59b8881e03bcab3f02539bd795ee72376",
+    "path2space_last_stage/fold4_models.pt": "e92a520428200bb4c3cdf0a819978885a9e53f36a6a6c5cb1ae338a812f8b984",
+    "path2space_protein/fold5_heads.pt": "532007d7d876e1dfc26acd469541cfc70f074c484bd7204ce55fa0df7a8a012d",
+    "path2space_last_stage/fold5_models.pt": "1613fca776e62d7572ed39099a7e4b7fb9ba61919551c99f89d5f6f7199bcb6e",
+    "path2space_protein/fold6_heads.pt": "d0dc798767aebde8d763050c7bf60b0d1f470ed31730d20e6ff24a2ebc07998d",
+    "path2space_last_stage/fold6_models.pt": "d57cd6418b7341cac85e58f9c3888e40818467bad8e3f508a97d2de2c2961c74",
+    "path2space_protein/fold7_heads.pt": "03c4c60d5943e27b03eb31aeddd6c35d9f9d579817e8801ea958918626c09ab3",
+    "path2space_last_stage/fold7_models.pt": "f9d88d82b8b6496093dcaa344198128e010afb966483e34f40c0d2a8cef63ccd",
+    "path2space_protein/fold8_heads.pt": "e8f3a32689ab1d7d0effdfa9fd5459d97b8fc804297a7038ea64f0a2000d3f30",
+    "path2space_last_stage/fold8_models.pt": "2b7bf71b429f7bd5359fd6ee2cac6b437857808e0f704e1cf1f6be7623136c22"
+  },
+  "encoder_source_lf_sha256": {
+    "__init__.py": "bdc52afdbd46b14436a3f886080fd89c6185d99184338f3f03d6ef2e33994189",
+    "ctranspath.py": "ecdd0a06797bcb75f035e6367939e460192627d477e795cc8d4a6f9e5fe2ae13",
+    "swin_transformer.py": "8d4ce00904ea051c8203447e03194e5fb96eb9f8cc6ac84ffd57d704221060fa"
+  }
+}

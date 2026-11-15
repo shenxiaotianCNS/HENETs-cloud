@@ -1,0 +1,10 @@
+# PyTorch and torchvision are provided by the GPU base image.
+# Outside Docker, install a matching CUDA wheel pair first; see RUNTIME.md.
+numpy==2.2.6
+opencv-python-headless==4.12.0.88
+openslide-python==1.4.2
+openslide-bin==4.0.0.14
+pillow==12.3.0
+tifffile==2025.5.10
+imagecodecs==2025.3.30
+matplotlib==3.9.4

@@ -1,0 +1,3 @@
+sample_id,he_path,cancer_type
+demo_liver,slides/demo_liver.svs,liver
+demo_breast,slides/demo_breast.svs,breast
